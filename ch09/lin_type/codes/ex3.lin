@@ -1,0 +1,4 @@
+lin fn x : lin bool {
+    free x;
+    lin false
+}

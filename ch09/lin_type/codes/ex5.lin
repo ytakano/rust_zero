@@ -1,0 +1,7 @@
+(lin fn x : lin bool {
+    if x {
+        un <un true, un false>
+    } else {
+        un <un false, un true>
+    }
+} lin true)

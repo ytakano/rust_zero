@@ -1,0 +1,5 @@
+split lin <lin true, lin false> as x, y {
+    free x;
+    free y;
+    un true
+}

@@ -1,0 +1,1 @@
+struct TypeB1;

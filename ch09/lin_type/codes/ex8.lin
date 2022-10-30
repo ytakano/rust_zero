@@ -1,0 +1,3 @@
+let x : lin bool = lin true;
+let y : lin bool = lin false;
+lin <x, y>

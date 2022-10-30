@@ -1,0 +1,21 @@
+[workspace]
+
+members = [
+    "ch01/mul",
+    "ch02/sort",
+    "ch03/rwlock",
+    "ch04/display",
+    "ch04/iter",
+    "ch04/serialize",
+    "ch05/markdown",
+    "ch05/mod_ex2",
+    "ch05/mod_ex3",
+    "ch05/visibility",
+    "ch06/regex",
+    "ch07/zrsh",
+    "ch08/ackerman",
+    "ch08/dbg_target",
+    "ch08/zdbg",
+    "ch09/parser",
+    "ch09/lin_type",
+]

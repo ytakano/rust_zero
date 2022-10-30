@@ -1,0 +1,7 @@
+lin fn x : lin bool {
+    iff x {
+        lin false
+    } else {
+        lin true
+    }
+}

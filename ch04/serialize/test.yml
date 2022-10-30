@@ -1,0 +1,10 @@
+---
+Node:
+  data: 3
+  next:
+    Node:
+      data: 2
+      next:
+        Node:
+          data: 1
+          next: Nil

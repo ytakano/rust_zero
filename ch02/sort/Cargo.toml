@@ -1,0 +1,10 @@
+[package]
+name = "sort"
+version = "0.1.0"
+edition = "2021"
+authors = ["Yuuki Takano <ytakanoster@gmail.com>"]
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]

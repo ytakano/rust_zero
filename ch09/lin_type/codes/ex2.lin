@@ -1,0 +1,6 @@
+let x : un bool = un true;
+if x {
+    un false
+} else {
+    un true
+}

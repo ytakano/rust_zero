@@ -1,0 +1,9 @@
+lin fn x : lin (lin bool * lin bool) {
+    split x as a, b {
+        if a {
+            b
+        } else {
+            lin true
+        }
+    }
+}

@@ -1,0 +1,7 @@
+un fn x : lin bool {
+    un fn y : un bool {
+        lin fn z : un bool {
+            lin <x, y>
+        }
+    }
+}

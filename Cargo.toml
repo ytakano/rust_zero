@@ -17,5 +17,5 @@ members = [
     "ch08/dbg_target",
     "ch08/zdbg",
     "ch09/parser",
-    "ch09/lin_type",
+    "ch09/linz",
 ]

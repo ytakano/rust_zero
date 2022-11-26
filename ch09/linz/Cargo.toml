@@ -1,5 +1,5 @@
 [package]
-name = "lin_type"
+name = "linz"
 version = "0.1.0"
 edition = "2021"
 authors = ["Yuuki Takano <ytakanoster@gmail.com>"]

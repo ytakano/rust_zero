@@ -53,7 +53,21 @@ impl Generator {
             AST::Char(c) => self.gen_char(*c)?,
             AST::Or(e1, e2) => self.gen_or(e1, e2)?,
             AST::Plus(e) => self.gen_plus(e)?,
-            AST::Star(e) => self.gen_star(e)?,
+            AST::Star(e1) => {
+                match &**e1 {
+                    // `(a*)*`のように`Star`が二重となっている場合にスタックオーバーフローする問題を回避するため、
+                    // このような`(((r*)*)*...*)*`を再帰的に処理して1つの`r*`へと変換する。
+                    AST::Star(e2) => self.gen_expr(&e2)?,
+                    AST::Seq(e2) if e2.len() == 1 =>
+                        if let Some(AST::Star(e3)) = e2.get(0) {
+                            self.gen_expr(&e3)?
+                        } else {
+                            self.gen_star(e1)?
+                        }
+                    e =>
+                        self.gen_star(&e)?
+                }
+            },
             AST::Question(e) => self.gen_question(e)?,
             AST::Seq(v) => self.gen_seq(v)?,
         }

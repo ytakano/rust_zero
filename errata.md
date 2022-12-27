@@ -12,3 +12,36 @@
 | 6.3節。P.141。ソースコード。 | 「`return Err(Box::new(..))`」となっている箇所 | このソースコード中でリターンしている箇所では、`Box::new()`は不要です |
 | 7.3.4項。P.184。1行目。| `vec![("echo", vec!["hello"]), ("less", vec![])]` | `vec![("echo", vec!["echo", "hello"]), ("less", vec!["less"])]` |
 | 7.3.4項。P.196。ソースコード | 「`self.is_group_empty()`」を呼び出している箇所の`unwrap()` | `self.is_group_empty()`には、`unwrap()`は不要です |
+
+### 3.4.2項。P.75。構造体のフィールドを借用しコンパイルエラーとなる例
+
+このページあるコードとエラーの説明は誤りです。
+
+以下のように、`&mut self`と構造体のフィールドへの参照をとるメソッドを定義すると、コンパイルエラーとなります。本ページはこのような場合を想定した説明となります。
+
+```rust
+#[derive(Debug)]
+struct XY {
+    x: Vec<i32>,
+    y: Vec<i32>,
+}
+
+fn main() {
+    let mut xy = XY {
+        x: vec![1, 2, 3],
+        y: Vec::new(),
+    };
+    
+    xy.update(&xy.x); // コンパイルエラー
+    
+    println!("{:?}", xy);
+}
+
+impl XY {
+    fn update(&mut self, x: &[i32]) {
+        for elm in x.iter() {
+            self.y.push(*elm * *elm);
+        }
+    }
+}
+```

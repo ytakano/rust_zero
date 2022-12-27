@@ -10,3 +10,5 @@
 | ---- | ----- | ---- |
 | 2.1節。P.29。図 2.6 | 中央の四角中のテキスト「`data: 40`」 | 「`data: 10`」 |
 | 6.3節。P.141。ソースコード。 | 「`return Err(Box::new(..))`」となっている箇所 | このソースコード中でリターンしている箇所では、`Box::new()`は不要です |
+| 7.3.4項。P.184。1行目。| `vec![("echo", vec!["hello"]), ("less", vec![])]` | `vec![("echo", vec!["echo", "hello"]), ("less", vec!["less"])]` |
+| 7.3.4項。P.196。ソースコード | 「`self.is_group_empty()`」を呼び出している箇所の`unwrap()` | `self.is_group_empty()`には、`unwrap()`は不要です |

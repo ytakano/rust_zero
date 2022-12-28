@@ -59,8 +59,8 @@ impl Generator {
                     // このような`(((r*)*)*...*)*`を再帰的に処理して1つの`r*`へと変換する。
                     AST::Star(e2) => self.gen_expr(&e2)?,
                     AST::Seq(e2) if e2.len() == 1 =>
-                        if let Some(AST::Star(e3)) = e2.get(0) {
-                            self.gen_expr(&e3)?
+                        if let Some(e3 @ AST::Star(_)) = e2.get(0) {
+                            self.gen_expr(e3)?
                         } else {
                             self.gen_star(e1)?
                         }

@@ -50,4 +50,7 @@ impl XY {
 
 `(a*)*`のような正規表現でスタックオーバーフローとなるそうですが、`(a*)*`を`a*`と変換することでスタックオーバーフローを回避可能だそうです。詳細は、下記PRを御覧ください。
 
-PR: https://github.com/ytakano/rust_zero/pull/4
+- PRs
+  - https://github.com/ytakano/rust_zero/pull/4
+  - https://github.com/ytakano/rust_zero/pull/7
+

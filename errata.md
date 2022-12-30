@@ -12,6 +12,8 @@
 | 6.3節。P.141。ソースコード。 | 「`return Err(Box::new(..))`」となっている箇所 | このソースコード中でリターンしている箇所では、`Box::new()`は不要です |
 | 7.3.4項。P.184。1行目。| `vec![("echo", vec!["hello"]), ("less", vec![])]` | `vec![("echo", vec!["echo", "hello"]), ("less", vec!["less"])]` |
 | 7.3.4項。P.196。ソースコード | 「`self.is_group_empty()`」を呼び出している箇所の`unwrap()` | `self.is_group_empty()`には、`unwrap()`は不要です |
+| 9.1.4項。P.244。下から1行目、および一番下の証明木の最終行。| `un (lin bool -> lin (un bool * un bool))` | `un (un bool -> lin (un bool * un bool))` |
+| 9.3.1項。P.255。`Expr`型 | | `#[derive(Debug)] `が必要です |
 
 ### 3.4.2項。P.75。構造体のフィールドを借用しコンパイルエラーとなる例
 

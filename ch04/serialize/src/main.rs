@@ -43,7 +43,7 @@ fn main() {
     println!("{:?}", list);
 
     // YAMLからデシリアライズ
-    let list = serde_yaml::from_str::<List<i32>>(&js).unwrap();
+    let list = serde_yaml::from_str::<List<i32>>(&yml).unwrap();
     println!("{:?}", list);
 
     // MessagePackからデシリアライズ

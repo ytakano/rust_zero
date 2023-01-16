@@ -12,6 +12,7 @@
 | 3.3節。P.68。ソースコードの2行目。 | `let b: &i32 = &b;` | `let b: &i32 = &a;` |
 | 3.4.2項。P.72。3段落目1行目。 | 可燃参照 | 可変参照 |
 | 3.4節。P.75。上のソースコードの下から2行目。 | `*elm * *elm` | `*elm + *elm` |
+| 4.3節。P.88。図 4.3。 | `{"top": {"left": {"left": "left", "right": "leaf}, "right": {"left: "leaf", "right": "leaf"}}` | `{"top": {"left": {"left": "left", "right": "leaf"}, "right": {"left": "leaf", "right": "leaf"}}}` |
 | 4.4節。P.90。上のソースコードの6行目。 | `&js` | `&yml` |
 | 6.3節。P.141。ソースコード。 | 「`return Err(Box::new(..))`」となっている箇所 | このソースコード中でリターンしている箇所では、`Box::new()`は不要です |
 | 7.3.4項。P.184。1行目。| `vec![("echo", vec!["hello"]), ("less", vec![])]` | `vec![("echo", vec!["echo", "hello"]), ("less", vec!["less"])]` |

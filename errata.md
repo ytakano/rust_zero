@@ -27,35 +27,70 @@
 ### 3.4.2項。P.75。構造体のフィールドを借用しコンパイルエラーとなる例
 
 このページあるコードとエラーの説明は誤りです。
+正しい説明を以下に記載します。
 
-以下のように、`&mut self`と構造体のフィールドへの参照をとるメソッドを定義すると、コンパイルエラーとなります。本ページはこのような場合を想定した説明となります。
+構造体フィールドの値に対して何らかの定型処理を行いたい場合があります。
+たとえば、`XY`という構造体の`selector`の値に応じて、
+`XY::x`か`XY::y`を変更したいとします。
+具体的には以下のようなコードとなります。
 
 ```rust
 #[derive(Debug)]
 struct XY {
     x: Vec<i32>,
     y: Vec<i32>,
+    selector: bool,
+    scaler: i32,
 }
 
 fn main() {
     let mut xy = XY {
         x: vec![1, 2, 3],
-        y: Vec::new(),
+        y: vec![4, 5, 6],
+        selector: true,
+        scaler: 3,
     };
     
-    xy.update(&xy.x); // コンパイルエラー
+    let v = xy.get_vec();
+    xy.update(v); // `xy`は借用されているためコンパイルエラー
     
     println!("{:?}", xy);
 }
 
 impl XY {
-    fn update(&mut self, x: &[i32]) {
-        for elm in x.iter() {
-            self.y.push(*elm * *elm);
+    /// `selector`の応じて、`x`か`y`を返す
+    fn get_vec(&mut self) -> &mut [i32] {
+        if self.selector {
+            &mut self.x
+        } else {
+            &mut self.y
+        }
+    }
+
+    /// `v`になんらかの定型処理を行う
+    fn update(&mut self, v: &mut [i32]) {
+        for elm in v.iter_mut() {
+            *elm *= self.scaler;
         }
     }
 }
 ```
+
+ここでは、`get_vec()`メソッドが`selector`の値に応じて`x`か`y`への可変参照を返しています。
+このコードは単純ですが、実際にはもっと複雑な処理の結果として`x`か`y`が返されると考えてください。
+やりたいことは、`get_vec()`で返された値に対して何らかの定型処理、ここでは`update()`メソッドを適用を行うとします。
+
+このような処理の場合、以下のように、`get_vec`メソッドと`update`メソッドを利用したくなります。
+
+```rust
+let mut xy = XY { /* 省略 */ };
+let v = xy.get_vec();
+xy.update(v); // `xy`は借用されているためコンパイルエラー
+```
+
+しかし、このコードはコンパイルエラーとなります。
+なぜなら、`get_vec()`で返される可変参照が`v`に借用されているため、`update()`で必要な`&mut self`が借用できないからです。
+これを解決するために、分配束縛などが利用できます。
 
 ### 第6章。正規表現エンジンのVM実装について
 

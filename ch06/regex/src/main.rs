@@ -90,6 +90,9 @@ mod tests {
         assert!(do_matching("abc?", "ab", true).unwrap());
         assert!(do_matching("((((a*)*)*)*)", "aaaaaaaaa", true).unwrap());
         assert!(do_matching("(a*)*b", "aaaaaaaaab", true).unwrap());
+        assert!(do_matching("(a*)*b", "b", true).unwrap());
+        assert!(do_matching("a**b", "aaaaaaaaab", true).unwrap());
+        assert!(do_matching("a**b", "b", true).unwrap());
 
         // パース成功、マッチ失敗
         assert!(!do_matching("abc|def", "efa", true).unwrap());

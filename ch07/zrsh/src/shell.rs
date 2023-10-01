@@ -425,7 +425,7 @@ impl Worker {
 
         let pgid;
         // 一つめのプロセスを生成
-        match fork_exec(Pid::from_raw(0), cmd[0].0, &cmd[0].1, None, output) {
+        match fork_exec(Pid::from_raw(0), cmd[0].0, &cmd[0].1, None, output, input) {
             Ok(child) => {
                 pgid = child;
             }
@@ -445,7 +445,7 @@ impl Worker {
 
         // 二つめのプロセスを生成
         if cmd.len() == 2 {
-            match fork_exec(pgid, cmd[1].0, &cmd[1].1, input, None) {
+            match fork_exec(pgid, cmd[1].0, &cmd[1].1, input, None, output) {
                 Ok(child) => {
                     pids.insert(child, info);
                 }
@@ -602,12 +602,14 @@ where
 ///
 /// - inputがSome(fd)の場合は、標準入力をfdと設定
 /// - outputSome(fd)の場合は、標準出力をfdと設定
+/// - fd_closeがSome(fd)の場合は、fork後にfdをクローズ
 fn fork_exec(
     pgid: Pid,
     filename: &str,
     args: &[&str],
     input: Option<i32>,
     output: Option<i32>,
+    fd_close: Option<i32>,
 ) -> Result<Pid, DynError> {
     let filename = CString::new(filename).unwrap();
     let args: Vec<CString> = args.iter().map(|s| CString::new(*s).unwrap()).collect();
@@ -621,6 +623,10 @@ fn fork_exec(
         ForkResult::Child => {
             // 子プロセスのプロセスグループIDをpgidに設定
             setpgid(Pid::from_raw(0), pgid).unwrap();
+
+            if let Some(fd) = fd_close {
+                syscall(|| unistd::close(fd)).unwrap();
+            }
 
             // 標準入出力を設定
             if let Some(infd) = input {

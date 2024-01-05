@@ -21,6 +21,7 @@
 | 3.4.2項。P.72。3段落目1行目。 | 可燃参照 | 可変参照 |
 | 3.4.2項。P.75。下から2行目。 | 分配束縛（destructive assignment） | 分配束縛（destructuring assignment） |
 | 3.4節。P.75。上のソースコードの下から2行目。 | `*elm * *elm` | `*elm + *elm` |
+| 3.5説。P.76。5行目。 | 排他制御と同じ制約を動的に | 排他制御と同じ制約を静的に |
 | 3.5節。P.76。下から2行目。 | 開放 | 解放 |
 | 3.5節。P.77。4行目。 | 開放 | 解放 |
 | 4.3節。P.88。図 4.3。 | `{"top": {"left": {"left": "left", "right": "leaf}, "right": {"left: "leaf", "right": "leaf"}}` | `{"top": {"left": {"left": "left", "right": "leaf"}, "right": {"left": "leaf", "right": "leaf"}}}` |

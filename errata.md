@@ -30,6 +30,7 @@
 | 6.3節。P.141。ソースコード。 | 「`return Err(Box::new(..))`」となっている箇所 | このソースコード中でリターンしている箇所では、`Box::new()`は不要です |
 | 7.3.4項。P.184。1行目。| `vec![("echo", vec!["hello"]), ("less", vec![])]` | `vec![("echo", vec!["echo", "hello"]), ("less", vec!["less"])]` |
 | 7.3.4項。P.196。ソースコード | 「`self.is_group_empty()`」を呼び出している箇所の`unwrap()` | `self.is_group_empty()`には、`unwrap()`は不要です |
+| 7.4節。P.201。演習問題3 | `nix::unistd::open` | `nix::fcntl::open` |
 | 9.1.4項。P.240~241。型に対するUn述語とLin述語の例。| `Un(un bool) = true`<br>`Un(lin <lin bool, lin bool>) = false`<br>`Lin(un bool) = true`<br>`Lin(un <un bool, un bool>) = true`<br>`Lin(lin <un bool, lin bool>) = true` | `Un(un bool) = true`<br>`Un(lin (lin bool * lin bool)) = false`<br>`Lin(un bool) = true`<br>`Lin(un (un bool * un bool)) = true`<br>`Lin(lin (un bool * lin bool)) = true` |
 | 9.1.4項。P.241。型環境に対するUn述語とLin述語の例。| `Un(x:un <un bool, un bool>, y:lin bool)`<br>`= Un(un <un bool, un bool>) ∧ Un(un bool)`<br>`= true`<br>`Un(x:un bool, y:un bool)`<br>`= Un(un bool) ∧ Un(lin bool)`<br>`= false` | `Un(x:un (un bool * un bool), y:un bool)`<br>`= Un(un (un bool * un bool)) ∧ Un(un bool)`<br>`= true`<br>`Un(x:un bool, y:lin bool)`<br>`= Un(un bool) ∧ Un(lin bool)`<br>`= false` |
 | 9.1.4項。P.244。下から1行目、および一番下の証明木の最終行。| `un (lin bool -> lin (un bool * un bool))` | `un (un bool -> lin (un bool * un bool))` |

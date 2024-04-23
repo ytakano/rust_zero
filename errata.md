@@ -28,6 +28,7 @@
 | 4.4節。P.90。上のソースコードの6行目。 | `&js` | `&yml` |
 | 6.3.1項。P.136。上のソースコードの6行目。 | `espace` | `escape` |
 | 6.3節。P.141。ソースコード。 | 「`return Err(Box::new(..))`」となっている箇所 | このソースコード中でリターンしている箇所では、`Box::new()`は不要です |
+| 7.1節。P.167。下から5行目。 | Bourne Shell（Bash） | Bourne Again Shell（Bash） |
 | 7.3.4項。P.184。1行目。| `vec![("echo", vec!["hello"]), ("less", vec![])]` | `vec![("echo", vec!["echo", "hello"]), ("less", vec!["less"])]` |
 | 7.3.4項。P.196。ソースコード | 「`self.is_group_empty()`」を呼び出している箇所の`unwrap()` | `self.is_group_empty()`には、`unwrap()`は不要です |
 | 7.4節。P.201。演習問題3 | `nix::unistd::open` | `nix::fcntl::open` |
